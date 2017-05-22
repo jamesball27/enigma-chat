@@ -6,7 +6,6 @@
 #  username        :string           not null
 #  password_digest :string           not null
 #  session_token   :string           not null
-#  logged_in       :boolean          default("false")
 #  created_at      :datetime
 #  updated_at      :datetime
 #
@@ -45,11 +44,6 @@ class User < ActiveRecord::Base
 
   def is_password?(password)
     BCrypt::Password.new(self.password_digest).is_password?(password)
-  end
-
-  def toggle_login!
-    self.logged_in = !self.logged_in
-    self.save!
   end
 
   private
