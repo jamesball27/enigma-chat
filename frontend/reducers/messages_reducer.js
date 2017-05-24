@@ -1,16 +1,12 @@
 import { RECEIVE_MESSAGE } from '../actions/message_actions';
 
-const defaultState = {
-  messages: []
-};
-
-const MessagesReducer = (state = defaultState, action) => {
+const MessagesReducer = (state = [], action) => {
   Object.freeze(state);
 
   switch(action.type) {
     case RECEIVE_MESSAGE:
-      const newState = Object.assign({}, state);
-      newState.messages.push(action.message);
+      const newState = Object.assign([], state);
+      newState.push(action.message);
       return newState;
     default:
       return state;
