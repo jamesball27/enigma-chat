@@ -21,5 +21,5 @@ class Api::SessionsController < ApplicationController
       render json: {}, status: 404
     end
   end
-  
+
 end

@@ -55,13 +55,14 @@ class Header extends React.Component {
   renderButtons() {
     if (this.props.currentUser) {
       return(
-        <div>
+        <div className="header-right">
+          <h4>Welcome { this.props.currentUser.username}</h4>
           <button onClick={ this.props.logOut }>Log Out</button>
         </div>
       );
     } else {
       return(
-        <div>
+        <div className="header-right">
           <button onClick={ this.openModal('Log In') }>Log In</button>
           <button onClick={ this.openModal('Sign Up') }>Sign Up</button>
         </div>
@@ -70,6 +71,7 @@ class Header extends React.Component {
   }
 
   render() {
+
     return(
       <header>
         <h1>Enigma Chat</h1>
