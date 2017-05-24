@@ -1,0 +1,94 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+
+  h1 {
+    font-size: 42px;
+  }
+
+  background: $gray;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+
+  button {
+    font-size: 16px;
+    font-family: inherit;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 0 10px;
+    transition: background, color, border-color, .25s;
+
+    &:hover {
+      background: $blue;
+      color: white;
+      border-color: $black;
+    }
+  }
+
+  h4 {
+    font-size: 24px;
+    margin: 10px;
+  }
+}
+
+.modal {
+  text-align: center;
+  width: 230px;
+  position: absolute;
+  right: 30px;
+  top: 130px;
+  border: 1px solid $black;
+  padding: 12px;
+
+  &:focus {
+    outline: none;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    input {
+      margin: 5px;
+      padding: 5px;
+      font: inherit;
+
+      &:focus {
+        outline: none;
+      }
+
+      &::-webkit-input-placeholder {
+        font-family: "Roboto Mono", monospace;
+      }
+
+      &::-moz-placeholder {
+        font-family: "Roboto Mono", monospace;
+      }
+    }
+
+    button {
+      width: 50%;
+      font-family: inherit;
+      border-radius: 3px;
+      transition: background, color, border-color, .25s;
+      margin: 5px;
+
+      &:hover {
+        background: $blue;
+        color: white;
+        border-color: $black;
+      }
+    }
+  }
+}
+
+.errors {
+  color: red;
+  font-size: 10px;
+}

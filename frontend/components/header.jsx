@@ -36,9 +36,17 @@ class Header extends React.Component {
     const user = { username, password };
 
     if (this.state.formType === 'Log In') {
-      this.props.logIn(user).then(() => this.reset());
+      this.props.logIn(user)
+        .then(
+          () => this.reset(),
+          () => this.clearForm()
+        );
     } else {
-      this.props.signUp(user).then(() => this.reset());
+      this.props.signUp(user)
+        .then(
+          () => this.reset(),
+          () => this.clearForm()
+        );
     }
   }
 
@@ -52,11 +60,18 @@ class Header extends React.Component {
     });
   }
 
+  clearForm() {
+    this.setState({
+      username: '',
+      password: ''
+    });
+  }
+
   renderButtons() {
     if (this.props.currentUser) {
       return(
         <div className="header-right">
-          <h4>Welcome { this.props.currentUser.username}</h4>
+          <h4>Welcome, { this.props.currentUser.username}.</h4>
           <button onClick={ this.props.logOut }>Log Out</button>
         </div>
       );
@@ -80,6 +95,7 @@ class Header extends React.Component {
            isOpen={ this.state.modalIsOpen }
            onRequestClose={ this.reset }
            contentLabel="Auth Form"
+           className="modal"
          >
           <h3>{ this.state.formType }</h3>
           <form onSubmit={ this.handleSubmit }>
@@ -89,6 +105,7 @@ class Header extends React.Component {
               value={ this.state.username }
               placeholder="Username"
               onChange={ this.handleChange('username') }
+              autoFocus
             />
             <input
               type="password"
@@ -96,7 +113,7 @@ class Header extends React.Component {
               placeholder="Password"
               onChange={ this.handleChange('password')}
             />
-            <input type="submit" value={ this.state.formType } />
+            <button>{ this.state.formType }</button>
           </form>
         </Modal>
       </header>
