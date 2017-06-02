@@ -12,6 +12,7 @@ class Chat extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.renderMessageClass = this.renderMessageClass.bind(this);
   }
 
   componentWillMount() {
@@ -36,10 +37,19 @@ class Chat extends React.Component {
     this.setState({ message: '' });
   }
 
+  renderMessageClass(message) {
+    if (this.props.currentUser) {
+      if (message.username === this.props.currentUser.username) {
+        return 'blue';
+      }
+    }
+
+    return 'red';
+  }
+
   render() {
     let disabled = true,
-        submitText = 'Log In to Send a Message',
-        spanClass = 'red';
+        submitText = 'Log In to Send a Message';
 
     if (this.props.currentUser) {
       disabled = false;
@@ -51,10 +61,7 @@ class Chat extends React.Component {
         <ul className="messages">
           { this.props.messages.map((message, idx) => (
             <li key={ idx }>
-              <span
-                className=
-                  { message.username === this.props.currentUser.username ? 'blue' : 'red' }
-              >
+              <span className={ this.renderMessageClass(message) }>
                 { message.username }:
               </span>
               { message.message }
