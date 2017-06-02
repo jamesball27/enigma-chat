@@ -38,7 +38,8 @@ class Chat extends React.Component {
 
   render() {
     let disabled = true,
-        submitText = 'Log In to Send a Message';
+        submitText = 'Log In to Send a Message',
+        spanClass = 'red';
 
     if (this.props.currentUser) {
       disabled = false;
@@ -46,15 +47,25 @@ class Chat extends React.Component {
     }
 
     return(
-      <div>
-        <ul>
-          { this.props.messages.map((message, idx) => <li key={ idx }>{ message.message } { message.username }</li>) }
+      <section className="chat">
+        <ul className="messages">
+          { this.props.messages.map((message, idx) => (
+            <li key={ idx }>
+              <span
+                className=
+                  { message.username === this.props.currentUser.username ? 'blue' : 'red' }
+              >
+                { message.username }:
+              </span>
+              { message.message }
+            </li>))
+          }
         </ul>
         <form onSubmit={ this.handleSubmit }>
-          <input type="text" value={ this.state.message } onChange={ this.handleChange } disabled={ disabled } />
-          <input type="submit" value={ submitText} disabled={ disabled } />
+          <input className="message-input" type="text" value={ this.state.message } onChange={ this.handleChange } disabled={ disabled } placeholder="Enter message"/>
+          <input className="submit" type="submit" value={ submitText} disabled={ disabled } />
         </form>
-      </div>
+      </section>
     );
   }
 }

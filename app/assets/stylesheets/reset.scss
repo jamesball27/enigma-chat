@@ -8,6 +8,7 @@ html, body, h1, h2, h3, h4, h5, h6, section, aside, ul, li, header, footer, main
  font-family: 'Roboto Mono', monospace;
  vertical-align: baseline;
  background: transparent;
+ box-sizing: border-box;
 }
 
 img {
@@ -32,4 +33,8 @@ button {
   &:focus {
     outline: none;
   }
+}
+
+html, body, #root, #root > div {
+  height: 100%
 }

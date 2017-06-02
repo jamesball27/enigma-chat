@@ -1,0 +1,55 @@
+.chat {
+  position: absolute;
+  right: 0;
+  border: 1px solid black;
+  width: 50%;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 20px;
+
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .message-input {
+      padding: 10px;
+      font: inherit;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .submit {
+      border: none;
+      height: 50px;
+      font: inherit;
+      font-size: 20px;
+      cursor: pointer;
+      background: $gray;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+.messages {
+  width: 100%;
+  overflow: auto;
+
+  li {
+    padding: 10px;
+
+    span.red {
+      color: red;
+    }
+
+    span.blue {
+      color: blue;
+    }
+  }
+}
