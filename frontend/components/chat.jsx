@@ -69,8 +69,20 @@ class Chat extends React.Component {
           }
         </ul>
         <form onSubmit={ this.handleSubmit }>
-          <input className="message-input" type="text" value={ this.state.message } onChange={ this.handleChange } disabled={ disabled } placeholder="Enter message"/>
-          <input className="submit" type="submit" value={ submitText} disabled={ disabled } />
+          <input
+            className="message-input"
+            type="text"
+            value={ this.state.message }
+            onChange={ this.handleChange }
+            disabled={ disabled }
+            placeholder="Enter message"
+          />
+          <input
+            className="submit"
+            type="submit"
+            value={ submitText}
+            disabled={ disabled }
+          />
         </form>
       </section>
     );
