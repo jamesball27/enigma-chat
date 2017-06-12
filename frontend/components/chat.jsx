@@ -33,7 +33,8 @@ class Chat extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    createMessage(this.state);
+    const encryptedMessage = this.props.enigma.encryptMessage(this.state.message);
+    createMessage({ message: encryptedMessage });
     this.setState({ message: '' });
   }
 
@@ -91,7 +92,8 @@ class Chat extends React.Component {
 
 const mapStateToProps = state => ({
   messages: state.messages,
-  currentUser: state.session.currentUser
+  currentUser: state.session.currentUser,
+  enigma: state.enigma
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -1,0 +1,21 @@
+.rotor {
+  width: 85%;
+  margin: 10px 0;
+  cursor: -webkit-grab;
+
+  .rotorItem {
+    border: 1px solid black;
+    text-align: center;
+    background: $gray;
+
+
+    h4 {
+      padding: 10px;
+    }
+  }
+
+  .slick-center {
+    background: $blue;
+  }
+
+}

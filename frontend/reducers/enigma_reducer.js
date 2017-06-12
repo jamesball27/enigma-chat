@@ -9,7 +9,7 @@ const defaultRotors = [
 ];
 
 const EnigmaReducer = (state = null, action) => {
-  Object.freeze(state);
+  // Object.freeze(state);
 
   switch(action.type) {
     case RECEIVE_DEFAULT_ENIGMA:

@@ -6,7 +6,6 @@
 // });
 export const RECEIVE_DEFAULT_ENIGMA = 'RECEIVE_DEFAULT_ENIGMA';
 
-export const receiveDefaultEnigma = enigma => ({
-  type: RECEIVE_DEFAULT_ENIGMA,
-  enigma
+export const receiveDefaultEnigma = () => ({
+  type: RECEIVE_DEFAULT_ENIGMA
 });

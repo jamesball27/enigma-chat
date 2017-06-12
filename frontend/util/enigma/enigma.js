@@ -10,11 +10,10 @@ class Enigma {
   }
 
   encryptMessage(message) {
-    const messageWithoutSpaces = message.split(' ').join('');
     const encryptedMessage = [];
 
-    for (let i = 0; i < messageWithoutSpaces.length; i++) {
-      const letter = messageWithoutSpaces[i];
+    for (let i = 0; i < message.length; i++) {
+      const letter = message[i];
       encryptedMessage.push(this.encryptLetter(letter));
     }
 
