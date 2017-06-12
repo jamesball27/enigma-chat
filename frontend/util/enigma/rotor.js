@@ -23,6 +23,7 @@ class Rotor {
 
     this.cipher = ROTORS[rotorNumber];
     this.offsetRotor(this.startingPosition);
+    this.startingPosition -= 1;
   }
 
   offsetRotor(position) {
@@ -30,6 +31,7 @@ class Rotor {
     const right = this.cipher.slice(position);
 
     this.cipher = right.concat(left);
+    this.startingPosition += 1;
   }
 
   encryptLetter(letter) {

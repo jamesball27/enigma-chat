@@ -3,10 +3,6 @@ class Enigma {
     this.rotor1 = rotor1;
     this.rotor2 = rotor2;
     this.rotor3 = rotor3;
-
-    this.rotor1RotationCount = 0;
-    this.rotor2RotationCount = 0;
-    this.rotor3RotationCount = 0;
   }
 
   encryptMessage(message) {
@@ -40,21 +36,16 @@ class Enigma {
   }
 
   shiftRotors() {
-    this.rotor1RotationCount += 1;
     this.rotor1.offsetRotor(1);
 
-    if (this.rotor1RotationCount === 26) {
-      this.rotor2RotationCount += 1;
-      this.rotor1RotationCount = 0;
-
+    if (this.rotor1.startingPosition === 26) {
       this.rotor2.offsetRotor(1);
+      this.rotor1.startingPosition = 0;
     }
 
-    if (this.rotor2RotationCount === 26) {
-      this.rotor3RotationCount += 1;
-      this.rotor2RotationCount = 0;
-
+    if (this.rotor2.startingPosition === 26) {
       this.rotor3.offsetRotor(1);
+      this.rotor2.startingPosition = 0;
     }
   }
 

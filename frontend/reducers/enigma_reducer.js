@@ -1,21 +1,32 @@
-import { RECEIVE_DEFAULT_ENIGMA } from '../actions/enigma_actions';
+import { RECEIVE_DEFAULT_ENIGMA, RECEIVE_NEW_ROTORS } from '../actions/enigma_actions';
 import Rotor from '../util/enigma/rotor';
 import Enigma from '../util/enigma/enigma';
 
-const defaultRotors = [
-  new Rotor(1, 0),
-  new Rotor(2, 0),
-  new Rotor(3, 0)
-];
+let rotors = [new Rotor(1, 0), new Rotor(2, 0), new Rotor(3, 0)];
 
-const EnigmaReducer = (state = null, action) => {
+const defaultState = {
+  enigma: new Enigma(...rotors),
+  rotor1: rotors[0],
+  rotor2: rotors[1],
+  rotor3: rotors[2],
+};
+
+const EnigmaReducer = (state = defaultState, action) => {
   // Object.freeze(state);
 
   switch(action.type) {
     case RECEIVE_DEFAULT_ENIGMA:
-      return new Enigma(...defaultRotors);
-    // case RECEIVE_ROTORS:
-    //   return Object.assign({}, state, action.rotors);
+      return state;
+    case RECEIVE_NEW_ROTORS:
+      const newState = Object.assign({}, state);
+
+      for (let rotor in action.rotors) {
+        newState[rotor] = action.rotors[rotor];
+      }
+
+      const { rotor1, rotor2, rotor3 } = newState;
+      newState.enigma = new Enigma(rotor1, rotor2, rotor3);
+      return newState;
     default:
       return state;
   }

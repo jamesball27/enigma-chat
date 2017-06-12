@@ -3,6 +3,8 @@ import Pusher from 'pusher-js';
 import { connect } from 'react-redux';
 import { receiveMessage } from '../actions/message_actions';
 import { createMessage } from '../util/message_api_util';
+import { receiveNewRotors } from '../actions/enigma_actions';
+import Rotor from '../util/enigma/rotor';
 
 class Chat extends React.Component {
   constructor(props) {
@@ -34,6 +36,15 @@ class Chat extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const encryptedMessage = this.props.enigma.encryptMessage(this.state.message);
+
+    const rotors = {
+      rotor1: new Rotor(1, this.props.enigma.rotor1.startingPosition),
+      rotor2: new Rotor(2, this.props.enigma.rotor2.startingPosition),
+      rotor3: new Rotor(3, this.props.enigma.rotor3.startingPosition)
+    };
+
+    this.props.receiveNewRotors(rotors);
+
     createMessage({ message: encryptedMessage });
     this.setState({ message: '' });
   }
@@ -93,11 +104,12 @@ class Chat extends React.Component {
 const mapStateToProps = state => ({
   messages: state.messages,
   currentUser: state.session.currentUser,
-  enigma: state.enigma
+  enigma: state.enigma.enigma
 });
 
 const mapDispatchToProps = dispatch => ({
-  receiveMessage: message => dispatch(receiveMessage(message))
+  receiveMessage: message => dispatch(receiveMessage(message)),
+  receiveNewRotors: rotors => dispatch(receiveNewRotors(rotors))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chat);

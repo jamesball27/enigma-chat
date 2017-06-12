@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { receiveDefaultEnigma } from '../actions/enigma_actions';
+import { receiveDefaultEnigma, receiveNewRotors } from '../actions/enigma_actions';
 import Rotor from './rotor';
 
 class Enigma extends React.Component {
@@ -20,11 +20,11 @@ class Enigma extends React.Component {
     return(
       <div className="enigma">
         <h4>Rotor I</h4>
-        <Rotor rotor={ this.props.enigma.rotor1 } />
+        <Rotor rotor={ this.props.enigma.rotor1 } rotorNumber="1" receiveNewRotors={ this.props.receiveNewRotors } />
         <h4>Rotor II</h4>
-        <Rotor rotor={ this.props.enigma.rotor2 } />
+        <Rotor rotor={ this.props.enigma.rotor2 } rotorNumber="2" receiveNewRotors={ this.props.receiveNewRotors }/>
         <h4>Rotor III</h4>
-        <Rotor rotor={ this.props.enigma.rotor3 } />
+        <Rotor rotor={ this.props.enigma.rotor3 } rotorNumber="3" receiveNewRotors={ this.props.receiveNewRotors }/>
       </div>
     );
   }
@@ -35,7 +35,8 @@ const mapStateToProps = ({ enigma }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  receiveDefaultEnigma: () => dispatch(receiveDefaultEnigma())
+  receiveDefaultEnigma: () => dispatch(receiveDefaultEnigma()),
+  receiveNewRotors: rotors => dispatch(receiveNewRotors(rotors))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Enigma);
