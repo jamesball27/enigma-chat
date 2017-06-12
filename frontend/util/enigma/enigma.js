@@ -23,21 +23,20 @@ class Enigma {
 
   encryptLetter(letter) {
     this.shiftRotors();
-    let encryptedLetter = this.rotor1.encryptLetter(letter.toUpperCase());
-    console.log(encryptedLetter);
-    encryptedLetter = this.rotor2.encryptLetter(encryptedLetter);
-    console.log(encryptedLetter);
-    encryptedLetter = this.rotor3.encryptLetter(encryptedLetter);
-    console.log(encryptedLetter);
 
+    // first pass through rotors
+    let encryptedLetter = this.rotor1.encryptLetter(letter.toUpperCase());
+    encryptedLetter = this.rotor2.encryptLetter(encryptedLetter);
+    encryptedLetter = this.rotor3.encryptLetter(encryptedLetter);
+
+    // hits reflector
     encryptedLetter = this.reflect(encryptedLetter);
-    console.log(encryptedLetter);
+
+    // second pass through rotors (inverted)
     encryptedLetter = this.rotor3.inverseEncryptLetter(encryptedLetter);
-    console.log(encryptedLetter);
     encryptedLetter = this.rotor2.inverseEncryptLetter(encryptedLetter);
-    console.log(encryptedLetter);
     encryptedLetter = this.rotor1.inverseEncryptLetter(encryptedLetter);
-    console.log(encryptedLetter);
+
     return encryptedLetter;
   }
 

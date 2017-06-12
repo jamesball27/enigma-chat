@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './header';
 import Chat from './chat';
+import Enigma from './enigma';
 
 const App = props => {
 
@@ -8,6 +9,7 @@ const App = props => {
     <div>
       <Header />
       <Chat />
+      <Enigma />
     </div>
   );
 };
