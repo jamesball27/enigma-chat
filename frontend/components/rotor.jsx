@@ -18,16 +18,20 @@ class Rotor extends React.Component {
   }
 
   componentDidUpdate() {
-    this.slider.slickGoTo(this.props.rotor.startingPosition);
+    setTimeout(() => {
+      this.slider.slickGoTo(this.props.rotor.startingPosition);
+    }, 500);
   }
 
   render() {
 
     const settings = {
+      useCSS: true,
       accessibility: true,
       arrows: false,
       infinite: true,
       slidesToShow: 3,
+      slidesToScroll: 1,
       centerMode: true,
       draggable: true,
       focusOnSelect: true,

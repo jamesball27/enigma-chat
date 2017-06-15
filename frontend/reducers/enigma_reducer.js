@@ -12,7 +12,7 @@ const defaultState = {
 };
 
 const EnigmaReducer = (state = defaultState, action) => {
-  // Object.freeze(state);
+  Object.freeze(state);
 
   switch(action.type) {
     case RECEIVE_DEFAULT_ENIGMA:

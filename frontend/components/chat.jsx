@@ -5,6 +5,7 @@ import { receiveMessage } from '../actions/message_actions';
 import { createMessage } from '../util/message_api_util';
 import { receiveNewRotors } from '../actions/enigma_actions';
 import Rotor from '../util/enigma/rotor';
+import Message from './message';
 
 class Chat extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class Chat extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.renderMessageClass = this.renderMessageClass.bind(this);
+    this.decryptMessage = this.decryptMessage.bind(this);
   }
 
   componentWillMount() {
@@ -28,14 +29,8 @@ class Chat extends React.Component {
     }, this);
   }
 
-  handleChange(e) {
-    e.preventDefault();
-    this.setState({ message: e.target.value });
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    const encryptedMessage = this.props.enigma.encryptMessage(this.state.message);
+  encryptMessage(message) {
+    const encryptedMessage = this.props.enigma.enigma.encryptMessage(message);
 
     const rotors = {
       rotor1: new Rotor(1, this.props.enigma.rotor1.startingPosition),
@@ -44,19 +39,23 @@ class Chat extends React.Component {
     };
 
     this.props.receiveNewRotors(rotors);
-
-    createMessage({ message: encryptedMessage });
-    this.setState({ message: '' });
+    return encryptedMessage;
   }
 
-  renderMessageClass(message) {
-    if (this.props.currentUser) {
-      if (message.username === this.props.currentUser.username) {
-        return 'blue';
-      }
-    }
+  decryptMessage(message) {
+    return this.encryptMessage(message);
+  }
 
-    return 'red';
+  handleChange(e) {
+    e.preventDefault();
+    this.setState({ message: e.target.value });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const encryptedMessage = this.encryptMessage(this.state.message);
+    createMessage({ message: encryptedMessage });
+    this.setState({ message: '' });
   }
 
   render() {
@@ -71,13 +70,15 @@ class Chat extends React.Component {
     return(
       <section className="chat">
         <ul className="messages">
-          { this.props.messages.map((message, idx) => (
-            <li key={ idx }>
-              <span className={ this.renderMessageClass(message) }>
-                { message.username }:
-              </span>
-              { message.message }
-            </li>))
+          {
+            this.props.messages.map((message, idx) =>
+              <Message
+                key={ idx }
+                message={ message }
+                currentUser={ this.props.currentUser }
+                decryptMessage={ this.decryptMessage }
+              />
+            )
           }
         </ul>
         <form onSubmit={ this.handleSubmit }>
@@ -104,7 +105,7 @@ class Chat extends React.Component {
 const mapStateToProps = state => ({
   messages: state.messages,
   currentUser: state.session.currentUser,
-  enigma: state.enigma.enigma
+  enigma: state.enigma
 });
 
 const mapDispatchToProps = dispatch => ({
