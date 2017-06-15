@@ -27,11 +27,13 @@ class Message extends React.Component {
 
   render() {
     return(
-      <li>
-        <span className={ this.renderClass() }>
-          { this.state.username }:
-        </span>
-        { this.state.message }
+      <li className="message">
+        <div>
+          <span className={ this.renderClass() }>
+            { this.state.username }:
+          </span>
+          { ' ' + this.state.message }
+        </div>
         <button onClick={ this.decryptMessage } >Decrypt</button>
       </li>
     );

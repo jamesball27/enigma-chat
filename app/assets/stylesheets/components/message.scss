@@ -1,0 +1,22 @@
+.message {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 10px;
+
+  span.red {
+    color: red;
+  }
+
+  span.blue {
+    color: blue;
+  }
+
+  button {
+    font: inherit;
+
+    &:hover {
+      background: $gray;
+    }
+  }
+}

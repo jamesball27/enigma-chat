@@ -4,11 +4,12 @@
   border: 1px solid black;
   width: 50%;
   height: 75%;
-
   margin: 20px 20px 20px 0;
 
+  display: flex;
+  flex-direction: column;
+
   form {
-    height: 10%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -24,7 +25,6 @@
 
     .submit {
       border: none;
-      height: 50px;
       font: inherit;
       font-size: 20px;
       cursor: pointer;
@@ -43,16 +43,4 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-
-  li {
-    padding: 10px;
-
-    span.red {
-      color: red;
-    }
-
-    span.blue {
-      color: blue;
-    }
-  }
 }
