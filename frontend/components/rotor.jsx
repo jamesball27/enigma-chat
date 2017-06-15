@@ -20,7 +20,7 @@ class Rotor extends React.Component {
   componentDidUpdate() {
     setTimeout(() => {
       this.slider.slickGoTo(this.props.rotor.startingPosition);
-    }, 500);
+    }, 250);
   }
 
   render() {

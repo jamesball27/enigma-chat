@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { receiveDefaultEnigma, receiveNewRotors } from '../actions/enigma_actions';
 import Rotor from './rotor';
+import RotorSort from './rotor-sort';
 
 class Enigma extends React.Component {
   constructor(props) {
@@ -19,12 +20,10 @@ class Enigma extends React.Component {
 
     return(
       <div className="enigma">
-        <h4>Rotor I</h4>
+        <RotorSort receiveNewRotors={ this.props.receiveNewRotors } enigma={ this.props.enigma }/>
         <Rotor rotor={ this.props.enigma.rotor1 } rotorNumber="1" receiveNewRotors={ this.props.receiveNewRotors } />
-        <h4>Rotor II</h4>
-        <Rotor rotor={ this.props.enigma.rotor2 } rotorNumber="2" receiveNewRotors={ this.props.receiveNewRotors }/>
-        <h4>Rotor III</h4>
-        <Rotor rotor={ this.props.enigma.rotor3 } rotorNumber="3" receiveNewRotors={ this.props.receiveNewRotors }/>
+        <Rotor rotor={ this.props.enigma.rotor2 } rotorNumber="2" receiveNewRotors={ this.props.receiveNewRotors } />
+        <Rotor rotor={ this.props.enigma.rotor3 } rotorNumber="3" receiveNewRotors={ this.props.receiveNewRotors } />
       </div>
     );
   }
