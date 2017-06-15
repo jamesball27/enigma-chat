@@ -1,5 +1,6 @@
 .rotor {
   width: 85%;
+  float: right;
   margin: 10px 0;
   cursor: -webkit-grab;
 
@@ -7,7 +8,6 @@
     border: 1px solid black;
     text-align: center;
     background: $gray;
-
 
     h4 {
       padding: 10px;

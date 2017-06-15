@@ -3,12 +3,12 @@ import { SortableContainer, SortableElement, arrayMove } from 'react-sortable-ho
 import Rotor from '../util/enigma/rotor';
 
 const SortableItem = SortableElement(({ value }) =>
-  <li>{ value }</li>
+  <li style={{ fontSize: "13px" }}>{ value }</li>
 );
 
 const SortableList = SortableContainer(({ rotors }) => {
   return (
-    <ul>
+    <ul className="rotor-sort">
       {rotors.map((value, index) => (
         <SortableItem key={ `rotor-${index}` } index={ index } value={ value } />
       ))}
@@ -55,7 +55,12 @@ class RotorSort extends React.Component {
 
   render() {
     return (
-      <SortableList rotors={ this.state.rotors } onSortEnd={ this.onSortEnd } />
+      <SortableList
+        rotors={ this.state.rotors }
+        onSortEnd={ this.onSortEnd }
+        lockAxis="y"
+        lockToContainerEdges={ true }
+      />
     );
   }
 }
