@@ -1,8 +1,9 @@
 class Enigma {
-  constructor(rotor1, rotor2, rotor3) {
+  constructor(rotor1, rotor2, rotor3, plugboard) {
     this.rotor1 = rotor1;
     this.rotor2 = rotor2;
     this.rotor3 = rotor3;
+    this.plugboard = plugboard;
   }
 
   encryptMessage(message) {
@@ -17,10 +18,13 @@ class Enigma {
   }
 
   encryptLetter(letter) {
+    let encryptedLetter = letter.toUpperCase();
+    encryptedLetter = this.plugboard.encryptLetter(encryptedLetter);
+
     this.shiftRotors();
 
     // first pass through rotors
-    let encryptedLetter = this.rotor1.encryptLetter(letter.toUpperCase());
+    encryptedLetter = this.rotor1.encryptLetter(encryptedLetter);
     encryptedLetter = this.rotor2.encryptLetter(encryptedLetter);
     encryptedLetter = this.rotor3.encryptLetter(encryptedLetter);
 
@@ -32,6 +36,7 @@ class Enigma {
     encryptedLetter = this.rotor2.inverseEncryptLetter(encryptedLetter);
     encryptedLetter = this.rotor1.inverseEncryptLetter(encryptedLetter);
 
+    encryptedLetter = this.plugboard.encryptLetter(encryptedLetter);
     return encryptedLetter;
   }
 

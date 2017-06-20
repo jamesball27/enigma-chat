@@ -10,3 +10,10 @@ export const receiveNewRotors = (rotors) => ({
   type: RECEIVE_NEW_ROTORS,
   rotors
 });
+
+export const RECEIVE_NEW_PLUGBOARD = 'RECEIVE_NEW_PLUGBOARD';
+
+export const receiveNewPlugboard = rows => ({
+  type: RECEIVE_NEW_PLUGBOARD,
+  rows
+});
