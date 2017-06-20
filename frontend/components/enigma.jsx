@@ -1,13 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { receiveDefaultEnigma, receiveNewRotors } from '../actions/enigma_actions';
+import { receiveDefaultEnigma, receiveNewRotors, receiveNewPlugboard } from '../actions/enigma_actions';
 import Rotor from './rotor';
 import RotorSort from './rotor-sort';
+import Plugboard from './plugboard';
 
 class Enigma extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentWillMount() {
     this.props.receiveDefaultEnigma();
@@ -28,6 +26,13 @@ class Enigma extends React.Component {
             <Rotor rotor={ this.props.enigma.rotor3 } rotorNumber="3" receiveNewRotors={ this.props.receiveNewRotors } />
           </div>
         </div>
+        <div className="plugboard">
+          <h5>Plugboard</h5>
+          <Plugboard
+            letters={ this.props.enigma.plugboard.letters }
+            receiveNewPlugboard={ this.props.receiveNewPlugboard }
+            />
+        </div>
       </div>
     );
   }
@@ -39,7 +44,8 @@ const mapStateToProps = ({ enigma }) => ({
 
 const mapDispatchToProps = dispatch => ({
   receiveDefaultEnigma: () => dispatch(receiveDefaultEnigma()),
-  receiveNewRotors: rotors => dispatch(receiveNewRotors(rotors))
+  receiveNewRotors: rotors => dispatch(receiveNewRotors(rotors)),
+  receiveNewPlugboard: letters => dispatch(receiveNewPlugboard(letters))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Enigma);

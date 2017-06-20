@@ -19,6 +19,8 @@ class Enigma {
 
   encryptLetter(letter) {
     let encryptedLetter = letter.toUpperCase();
+
+    // pass through plugboard
     encryptedLetter = this.plugboard.encryptLetter(encryptedLetter);
 
     this.shiftRotors();
@@ -36,7 +38,9 @@ class Enigma {
     encryptedLetter = this.rotor2.inverseEncryptLetter(encryptedLetter);
     encryptedLetter = this.rotor1.inverseEncryptLetter(encryptedLetter);
 
+    // pass through plugboard
     encryptedLetter = this.plugboard.encryptLetter(encryptedLetter);
+    
     return encryptedLetter;
   }
 

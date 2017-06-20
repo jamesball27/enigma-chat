@@ -6,14 +6,14 @@ export const receiveDefaultEnigma = () => ({
 
 export const RECEIVE_NEW_ROTORS = 'RECEIVE_NEW_ROTORS';
 
-export const receiveNewRotors = (rotors) => ({
+export const receiveNewRotors = rotors => ({
   type: RECEIVE_NEW_ROTORS,
   rotors
 });
 
 export const RECEIVE_NEW_PLUGBOARD = 'RECEIVE_NEW_PLUGBOARD';
 
-export const receiveNewPlugboard = rows => ({
+export const receiveNewPlugboard = letters => ({
   type: RECEIVE_NEW_PLUGBOARD,
-  rows
+  letters
 });

@@ -1,0 +1,23 @@
+.plugboard {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 80px;
+  width: 100%;
+
+}
+
+.plug-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  cursor: -webkit-grab;
+  -webkit-user-select: none;
+  width: 500px;
+  margin-right: 20px;
+
+  li {
+    padding: 0 10px;
+    font-size: 30px;
+  }
+}

@@ -7,9 +7,8 @@ import Plugboard from '../util/enigma/plugboard';
 
 let rotors = [new Rotor(1, 0), new Rotor(2, 0), new Rotor(3, 0)];
 
-const defaultRow1 = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-const defaultRow2 = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-let plugboard = new Plugboard(defaultRow1, defaultRow2);
+const defaultLetters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+let plugboard = new Plugboard(defaultLetters);
 
 const defaultState = {
   enigma: new Enigma(...rotors, plugboard),
@@ -35,7 +34,7 @@ const EnigmaReducer = (state = defaultState, action) => {
       newState.enigma = new Enigma(rotor1, rotor2, rotor3, newState.plugboard);
       return newState;
     case RECEIVE_NEW_PLUGBOARD:
-      plugboard = new Plugboard(...action.rows);
+      plugboard = new Plugboard(action.letters);
       newState.plugboard = plugboard;
       newState.enigma = new Enigma(newState.rotor1, newState.rotor2, newState.rotor3, plugboard);
       return newState;
