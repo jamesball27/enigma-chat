@@ -1,0 +1,28 @@
+.instructions {
+  // border: 1px solid gray;
+  background: $gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%;
+  padding: 20px;
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  h5 {
+    font-size: 24px;
+    padding-bottom: 10px;
+  }
+
+  p {
+    font-size: 14px;
+    span {
+      padding: 5px 0;
+      display: inline-block;
+    }
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}
