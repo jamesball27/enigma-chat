@@ -5,7 +5,6 @@ import Enigma from './enigma';
 import Instructions from './instructions';
 
 const App = props => {
-
   return (
     <div>
       <Header />
