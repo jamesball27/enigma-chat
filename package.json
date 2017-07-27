@@ -37,5 +37,12 @@
     "redux-thunk": "^2.2.0",
     "slick-carousel": "^1.6.0",
     "webpack": "^2.6.0"
+  },
+  "engines": {
+    "node": "6.10.0",
+    "npm": "3.10.10"
+  },
+  "scripts": {
+    "postinstall": "webpack"
   }
 }
