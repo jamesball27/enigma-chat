@@ -1,7 +1,7 @@
 # Enigma Chat
 Enigma Chat is a real-time chat app (built with React/Redux, Ruby on Rails, and the Pusher WebSocket API) that allows you to send encrypted messages using the World War II era enigma encryption scheme.
 
-[Enigma Chat Live]()
+[Enigma Chat Live](http://enigma-chat-app.herokuapp.com/)
 
 _NB: The Enigma cipher was famously cracked by Alan Turing and his colleagues at Bletchley Park in the 1940s. This app was built for fun should not be used to send any important or sensitive information._
 
